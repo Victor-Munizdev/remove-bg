@@ -40,6 +40,15 @@ Uma solução poderosa e local para remoção de fundos de logotipos, otimizada 
 
 ---
 
+## 📋 Pré-requisitos
+
+Antes de começar, certifique-se de ter instalado em sua máquina:
+
+- **Python 3.10+**: [Download aqui](https://www.python.org/downloads/)
+- **Node.js (LTS)**: [Download aqui](https://nodejs.org/) (Necessário para rodar o Vite/React)
+
+---
+
 ## ⚡ Automação (Execução Rápida)
 
 Criei scripts que configuram o ambiente e lançam ambos os servidores de uma vez:
