@@ -1,0 +1,18 @@
+# Python
+backend/venv/
+backend/__pycache__/
+*.py[cod]
+*$py.class
+.env
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Models
+backend/.u2net/

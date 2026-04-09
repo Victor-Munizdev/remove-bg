@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+rembg
+pillow
+python-multipart
+onnxruntime-silicon
+numpy<2
+pillow-heif
+vtracer
