@@ -111,12 +111,6 @@ function App() {
     document.body.removeChild(link)
   }
 
-  const handleViewPdf = () => {
-    if (selectedFormat === 'pdf' && result) {
-      window.open(result, '_blank');
-    }
-  }
-
   const reset = () => {
     setFile(null)
     setPreview(null)
@@ -164,18 +158,7 @@ function App() {
                 </div>
               )}
               {result ? (
-                selectedFormat === 'pdf' ? (
-                  <div className="pdf-placeholder" style={{textAlign: 'center', padding: '2rem'}}>
-                    <svg style={{width: '48px', height: '48px', color: '#ff4444', marginBottom: '1rem'}} fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z" />
-                      <path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
-                    </svg>
-                    <p>PDF Gerado com Sucesso</p>
-                    <span style={{fontSize: '0.8rem', color: '#666'}}>Pronto para download</span>
-                  </div>
-                ) : (
-                  <img src={result} alt="Resultado" />
-                )
+                <img src={result} alt="Resultado" />
               ) : (
                 !isProcessing && <p style={{color: '#555'}}>Aguardando processamento...</p>
               )}
@@ -200,7 +183,7 @@ function App() {
         <div className="actions" style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', marginTop: '1rem'}}>
           {!result && !isProcessing && (
             <div className="format-selector">
-              <label style={{display: 'block', fontSize: '0.8rem', color: '#666', marginBottom: '4px'}}>Formato de Saída</label>
+              <label style={{display: 'block', fontSize: '0.8rem', color: 'white', marginBottom: '4px'}}>Formato de Saída:</label>
               <select 
                 value={selectedFormat} 
                 onChange={(e) => setSelectedFormat(e.target.value)}
@@ -212,7 +195,6 @@ function App() {
                 <option value="svg">SVG (Vetor AI)</option>
                 <option value="tiff">TIFF (Profissional)</option>
                 <option value="bmp">BMP (Legado)</option>
-                <option value="pdf">PDF (Documento)</option>
               </select>
             </div>
           )}
@@ -226,12 +208,6 @@ function App() {
             </button>
           )}
 
-          {result && selectedFormat === 'pdf' && (
-            <button className="btn-primary" onClick={handleViewPdf} style={{alignSelf: 'flex-end', background: '#ff4444', border: 'none'}}>
-              Visualizar & Imprimir (Ctrl + P)
-            </button>
-          )}
-          
           {preview && !isProcessing && (
             <button className="btn-primary" style={{background: 'rgba(255,255,255,0.05)', color: '#ccc', boxShadow: 'none', alignSelf: 'flex-end'}} onClick={reset}>Nova Imagem</button>
           )}

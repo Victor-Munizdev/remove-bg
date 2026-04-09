@@ -129,33 +129,6 @@ async def remove_background(
             img.save(img_byte_arr, format='TIFF')
             media_type = "image/tiff"
 
-        elif output_format == "pdf":
-            try:
-                from fpdf import FPDF
-                
-                # Create a temporary PNG for FPDF (handles transparency better)
-                tmp_png = io.BytesIO()
-                img.save(tmp_png, format="PNG")
-                tmp_png.seek(0)
-                
-                # FPDF needs dimensions in mm (approximate)
-                w_mm = img.width * 0.264583
-                h_mm = img.height * 0.264583
-                
-                pdf = FPDF(unit="mm", format=[w_mm, h_mm])
-                pdf.add_page()
-                pdf.image(tmp_png, x=0, y=0, w=w_mm, h=h_mm)
-                
-                result_bytes = pdf.output()
-                media_type = "application/pdf"
-            except Exception as pdf_err:
-                print(f"FPDF Error: {pdf_err}")
-                # Fallback to Pillow if FPDF fails
-                pdf_img = img.convert("RGB")
-                pdf_img.save(img_byte_arr, format='PDF')
-                result_bytes = img_byte_arr.getvalue()
-                media_type = "application/pdf"
-
         else: # Default to WEBP
             img.save(img_byte_arr, format='WEBP', quality=85, method=6)
             media_type = "image/webp"
